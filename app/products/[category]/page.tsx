@@ -521,49 +521,22 @@ const categoryContent: Record<string, Category> = {
   }
 };
 
-export async function generateMetadata({ params }: { params: { category: string } }) {
-  const category = categoryContent[params.category as keyof typeof categoryContent];
-  
-  if (!category) {
-    return {
-      title: "Category Not Found",
-    };
-  }
-
-  return {
-    title: `${category.title} | ${BRAND.name}`,
-    description: category.description,
-    openGraph: {
-      title: `${category.title} - Commercial Kitchen Equipment | ${BRAND.name}`,
-      description: category.description,
-      images: [{ url: category.image }],
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${category.title} | ${BRAND.name}`,
-      description: category.description,
-      images: [category.image],
-    },
-    keywords: [
-      `commercial ${params.category}`,
-      `industrial ${params.category}`,
-      `stainless steel ${params.category}`,
-      `kitchen ${params.category}`,
-      `${BRAND.name} ${params.category}`,
-      'commercial kitchen equipment',
-      'Kenya',
-      'East Africa'
-    ].join(', '),
+interface PageProps {
+  params: {
+    category: string;
   };
 }
 
-export default function CategoryPage({ params }: { params: { category: string } }) {
-  const category = categoryContent[params.category as keyof typeof categoryContent];
-
-  if (!category) {
+export default async function CategoryPage({ params }: PageProps) {
+  // Get the category from params
+  const { category } = await params;
+  
+  // Check if category exists
+  if (!categoryContent[category]) {
     notFound();
   }
+
+  const categoryData = categoryContent[category];
 
   return (
     <div className="pt-24">
@@ -573,22 +546,22 @@ export default function CategoryPage({ params }: { params: { category: string } 
             <Breadcrumb
               items={[
                 { label: "Products", href: "/products" },
-                { label: category.title }
+                { label: categoryData.title }
               ]}
             />
           </div>
           
           <div className="py-12 flex flex-col md:flex-row gap-8 items-center">
             <div className="flex-1">
-              <h1 className="heading-1 mb-4">{category.title}</h1>
+              <h1 className="heading-1 mb-4">{categoryData.title}</h1>
               <p className="text-gray-300 text-lg max-w-2xl">
-                {category.description}
+                {categoryData.description}
               </p>
             </div>
             <div className="w-full md:w-1/3">
               <Image
-                src={category.image}
-                alt={category.title}
+                src={categoryData.image}
+                alt={categoryData.title}
                 width={400}
                 height={300}
                 className="rounded-lg"
@@ -602,7 +575,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <div className="grid md:grid-cols-2 gap-8">
-              {category.products.map((product) => (
+              {categoryData.products.map((product) => (
                 <motion.div
                   key={product.name}
                   initial={{ opacity: 0, y: 20 }}
@@ -689,12 +662,56 @@ export default function CategoryPage({ params }: { params: { category: string } 
 
           <div className="lg:sticky lg:top-24">
             <ProductEnquiryForm
-              productName={category.products[0].name}
-              category={category.title}
+              productName={categoryData.products[0].name}
+              category={categoryData.title}
             />
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+// Generate static params for all categories
+export function generateStaticParams() {
+  return Object.keys(categoryContent).map((category) => ({
+    category,
+  }));
+}
+
+export async function generateMetadata({ params }: { params: { category: string } }) {
+  const category = categoryContent[params.category as keyof typeof categoryContent];
+  
+  if (!category) {
+    return {
+      title: "Category Not Found",
+    };
+  }
+
+  return {
+    title: `${category.title} | ${BRAND.name}`,
+    description: category.description,
+    openGraph: {
+      title: `${category.title} - Commercial Kitchen Equipment | ${BRAND.name}`,
+      description: category.description,
+      images: [{ url: category.image }],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${category.title} | ${BRAND.name}`,
+      description: category.description,
+      images: [category.image],
+    },
+    keywords: [
+      `commercial ${params.category}`,
+      `industrial ${params.category}`,
+      `stainless steel ${params.category}`,
+      `kitchen ${params.category}`,
+      `${BRAND.name} ${params.category}`,
+      'commercial kitchen equipment',
+      'Kenya',
+      'East Africa'
+    ].join(', '),
+  };
 } 
