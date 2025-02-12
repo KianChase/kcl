@@ -15,7 +15,7 @@ export default function Logo({ className = "", variant = "full" }: LogoProps) {
         // Simple monogram version
         <div className="flex items-center justify-center w-10 h-10">
           <span className="text-2xl font-bold text-red-600">
-            KCL
+            {BRAND.shortName}
           </span>
         </div>
       ) : (
@@ -23,10 +23,10 @@ export default function Logo({ className = "", variant = "full" }: LogoProps) {
         <div className="flex items-center gap-3">
           <div className="flex flex-col">
             <div className="text-2xl font-bold leading-none">
-              <span className="text-red-600">KCL</span>
+              <span className="text-red-600">{BRAND.shortName}</span>
             </div>
             <div className="text-xs tracking-wider text-gray-600">
-              Kitchen Commercial Limited
+              {BRAND.name}
             </div>
           </div>
         </div>

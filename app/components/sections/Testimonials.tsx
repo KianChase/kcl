@@ -65,8 +65,8 @@ export default function Testimonials() {
                   index === currentIndex ? "opacity-100" : "opacity-0 absolute inset-0"
                 }`}
               >
-                <blockquote className="text-2xl md:text-3xl font-light leading-relaxed mb-8 max-w-4xl">
-                  "{testimonial.quote}"
+                <blockquote className="text-xl text-white mb-6">
+                  &quot;{testimonial.quote}&quot;
                 </blockquote>
                 <div className="flex items-center gap-4">
                   <div className="relative h-16 w-16 rounded-full overflow-hidden">

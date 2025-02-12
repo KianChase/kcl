@@ -35,7 +35,7 @@ export default function ProductEnquiryForm({ productName, category }: ProductEnq
       
       {isSuccess ? (
         <div className="text-green-600">
-          <p>Thank you for your enquiry. Our team will contact you shortly.</p>
+          <p>Thank you for your enquiry. {BRAND.name} team will contact you shortly.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">

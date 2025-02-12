@@ -56,7 +56,7 @@ export default function InstallationShowcase() {
         <div className="text-center mb-16">
           <h2 className="heading-2 mb-4">Our Major Installations</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Trusted by Kenya's leading hospitality institutions and luxury hotels
+            Trusted by Kenya&apos;s leading hospitality institutions and luxury hotels
           </p>
         </div>
 

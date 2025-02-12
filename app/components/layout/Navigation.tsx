@@ -15,7 +15,10 @@ const navItems = [
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" }
-];
+].map(item => ({
+  ...item,
+  ariaLabel: `Visit ${BRAND.name} ${item.label} page`
+}));
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);

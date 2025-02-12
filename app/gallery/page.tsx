@@ -59,7 +59,7 @@ export default function GalleryPage() {
         <div className="max-w-7xl mx-auto px-4">
           <h1 className="heading-1 mb-4">Installation Gallery</h1>
           <p className="text-gray-300 text-lg max-w-2xl">
-            Explore our portfolio of educational kitchen installations across East Africa's leading institutions.
+            Explore our portfolio of East Africa&apos;s leading kitchen installations.
           </p>
         </div>
       </div>

@@ -58,7 +58,7 @@ export default function FeaturesShowcase() {
       <div className="max-w-7xl mx-auto px-4" ref={containerRef}>
         <div className="text-center mb-16">
           <h2 className="heading-2 mb-4">
-            Why Choose Kitchen Commercial Limited
+            Why Choose {BRAND.name}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Experience the perfect blend of craftsmanship, technology, and service
@@ -70,7 +70,7 @@ export default function FeaturesShowcase() {
             <div
               key={feature.title}
               className="feature-item opacity-0 transition-all duration-700 delay-[var(--delay)]"
-              style={{ '--delay': `${index * 200}ms` } as any}
+              style={{ '--delay': `${index * 200}ms` } as React.CSSProperties}
             >
               <div className="group relative h-[300px] rounded-xl overflow-hidden">
                 <Image

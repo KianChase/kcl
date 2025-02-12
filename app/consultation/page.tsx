@@ -7,7 +7,7 @@ export default function ConsultationPage() {
         <div className="max-w-7xl mx-auto px-4">
           <h1 className="heading-1 mb-4">Schedule a Consultation</h1>
           <p className="text-gray-300 text-lg max-w-2xl">
-            Let's discuss your kitchen requirements. Our team of experts will help you design 
+            Let&apos;s discuss your kitchen requirements. Our team of experts will help you design 
             the perfect solution for your commercial or institutional kitchen needs.
           </p>
         </div>

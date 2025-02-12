@@ -1,4 +1,4 @@
-import { Phone, Mail, Clock, PenTool, FileText, Users } from "lucide-react";
+import { Phone, PenTool, FileText, Users } from "lucide-react";
 import { BRAND } from "@/constants/brand";
 
 const supportChannels = [

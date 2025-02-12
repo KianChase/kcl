@@ -9,14 +9,14 @@ const testimonials = [
     name: "James Mwangi",
     role: "Executive Chef, Sarova Stanley",
     image: "/testimonials/chef1.jpg",
-    quote: "The quality and durability of KitchenCraft's equipment is unmatched. Their custom solutions have transformed our kitchen efficiency.",
+    quote: "The quality and durability of KitchenCraft&apos;s equipment is unmatched. Their custom solutions have transformed our kitchen efficiency.",
     rating: 5
   },
   {
     name: "Sarah Kimani",
     role: "F&B Director, Sankara Nairobi",
     image: "/testimonials/director1.jpg",
-    quote: "Working with KitchenCraft was seamless. Their attention to detail and after-sales support is exceptional.",
+    quote: "Working with KitchenCraft&apos;s solutions was seamless. Their attention to detail and after-sales support is exceptional.",
     rating: 5
   },
   {
@@ -50,7 +50,7 @@ export default function TestimonialCarousel() {
             <div className="relative">
               <h2 className="heading-2 mb-3">What Our Clients Say</h2>
               <p className="text-xl text-gray-500">
-                Trusted by East Africa's leading establishments
+                Trusted by East Africa&apos;s leading establishments
               </p>
             </div>
           </div>
@@ -81,9 +81,9 @@ export default function TestimonialCarousel() {
                           <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
                         ))}
                       </div>
-                      <blockquote className="text-xl text-white mb-6">
-                        "{testimonial.quote}"
-                      </blockquote>
+                      <p className="text-gray-600 mb-6">
+                        &quot;{testimonial.quote}&quot;
+                      </p>
                       <div>
                         <div className="font-semibold text-white">
                           {testimonial.name}

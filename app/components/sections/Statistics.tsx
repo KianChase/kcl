@@ -35,7 +35,12 @@ const stats = [
   }
 ];
 
-function Counter({ value, suffix = "", duration = 2000 }) {
+interface CounterProps {
+  value: number;
+  suffix?: string;
+}
+
+function Counter({ value, suffix = "" }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
   

@@ -82,7 +82,7 @@ export default function EducationalSolutions() {
         <div className="text-center mb-16">
           <h2 className="heading-2 mb-4">Educational Kitchen Solutions</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {BRAND.name}'s specialized solutions for culinary education institutions
+            {BRAND.name}&apos;s specialized solutions for culinary education institutions
           </p>
         </div>
 

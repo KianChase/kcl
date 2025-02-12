@@ -79,7 +79,7 @@ export default function CustomSolutions() {
           <div className="inline-block p-6 bg-gray-50 rounded-lg">
             <h3 className="text-lg font-semibold mb-2">Have a specific design in mind?</h3>
             <p className="text-gray-600 mb-4">
-              Share your inspiration with us, and we'll help you create the perfect custom solution.
+              Share your inspiration with us, and we&apos;ll help you create the perfect custom solution.
             </p>
             <a
               href="/consultation"

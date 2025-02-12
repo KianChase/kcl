@@ -8,7 +8,7 @@ export default function CategoryNotFound() {
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Category Not Found</h1>
           <p className="text-gray-600 mb-8">
-            Sorry, we couldn't find the product category you're looking for.
+            Sorry, we couldn&apos;t find the product category you&apos;re looking for.
           </p>
           <Link
             href="/products"

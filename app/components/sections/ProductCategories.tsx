@@ -56,7 +56,7 @@ export default function ProductCategories() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-2 mb-4">Our Product Categories</h2>
+            <h2 className="heading-2 mb-4">{BRAND.name} Product Categories</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Professional kitchen equipment designed for performance and durability
             </p>

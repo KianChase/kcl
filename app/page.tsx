@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import ParallaxHero from "./components/sections/ParallaxHero";
 import ServicesShowcase from "./components/sections/ServicesShowcase";
 import ProjectShowcase from "./components/sections/ProjectShowcase";

@@ -4,7 +4,7 @@ const clients = [
   {
     name: "Utalii College",
     logo: "/logos/utalii.png",
-    description: "Kenya's Premier Hospitality Institution"
+    description: "Kenya&apos;s Premier Hospitality Institution"
   },
   {
     name: "Sarova Hotels",
@@ -33,8 +33,12 @@ export default function TrustIndicators() {
     <section className="py-16 bg-gray-900">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center text-white mb-12">
-          <p className="text-sm uppercase tracking-wider mb-2">Trusted By Industry Leaders</p>
-          <h2 className="text-2xl font-semibold">Serving East Africa's Most Prestigious Establishments</h2>
+          <p className="text-sm uppercase tracking-wider mb-2">
+            East Africa&apos;s Most Prestigious Establishments
+          </p>
+          <h2 className="text-2xl font-semibold">
+            Serving East Africa&apos;s Most Prestigious Establishments
+          </h2>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center">

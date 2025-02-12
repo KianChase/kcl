@@ -522,9 +522,9 @@ const categoryContent: Record<string, Category> = {
 };
 
 interface PageProps {
-  params: {
+  params: Promise<{
     category: string;
-  };
+  }>;
 }
 
 export default async function CategoryPage({ params }: PageProps) {
@@ -679,36 +679,37 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { category: string } }) {
-  const category = categoryContent[params.category as keyof typeof categoryContent];
+export async function generateMetadata({ params }: PageProps) {
+  const { category } = await params;
+  const categoryData = categoryContent[category as keyof typeof categoryContent];
   
-  if (!category) {
+  if (!categoryData) {
     return {
       title: "Category Not Found",
     };
   }
 
   return {
-    title: `${category.title} | ${BRAND.name}`,
-    description: category.description,
+    title: `${categoryData.title} | ${BRAND.name}`,
+    description: categoryData.description,
     openGraph: {
-      title: `${category.title} - Commercial Kitchen Equipment | ${BRAND.name}`,
-      description: category.description,
-      images: [{ url: category.image }],
+      title: `${categoryData.title} - Commercial Kitchen Equipment | ${BRAND.name}`,
+      description: categoryData.description,
+      images: [{ url: categoryData.image }],
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${category.title} | ${BRAND.name}`,
-      description: category.description,
-      images: [category.image],
+      title: `${categoryData.title} | ${BRAND.name}`,
+      description: categoryData.description,
+      images: [categoryData.image],
     },
     keywords: [
-      `commercial ${params.category}`,
-      `industrial ${params.category}`,
-      `stainless steel ${params.category}`,
-      `kitchen ${params.category}`,
-      `${BRAND.name} ${params.category}`,
+      `commercial ${category}`,
+      `industrial ${category}`,
+      `stainless steel ${category}`,
+      `kitchen ${category}`,
+      `${BRAND.name} ${category}`,
       'commercial kitchen equipment',
       'Kenya',
       'East Africa'

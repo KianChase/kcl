@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
 import Banner from "./components/Banner";
-import Logo from "./components/Logo";
-import FloatingContact from "./components/FloatingContact";
 import Navigation from "./components/layout/Navigation";
+import Footer from "./components/layout/Footer";
+import FloatingContact from "./components/FloatingContact";
 import { BRAND } from "@/constants/brand";
 
 const inter = Inter({ subsets: ["latin"] });

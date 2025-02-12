@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { PenTool, Settings, Wrench, Users } from "lucide-react";
@@ -37,8 +36,6 @@ const services = [
 ];
 
 export default function ServicesShowcase() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
     <section className="py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-6xl mx-auto px-4">
@@ -47,7 +44,7 @@ export default function ServicesShowcase() {
             Our Services
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            East Africa's trusted commercial kitchen partner
+            East Africa&apos;s trusted commercial kitchen partner
           </p>
         </div>
 
@@ -59,8 +56,6 @@ export default function ServicesShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              onHoverStart={() => setHoveredIndex(index)}
-              onHoverEnd={() => setHoveredIndex(null)}
               className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
             >
               <div className="relative h-64">

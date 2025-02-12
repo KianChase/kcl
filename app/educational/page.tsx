@@ -107,7 +107,7 @@ export default function EducationalPage() {
               <div className="space-y-6">
                 <h3 className="text-xl font-semibold">Project Overview</h3>
                 <p className="text-gray-600">
-                  Complete design and installation of multiple training kitchens, serving East Africa's leading hospitality training institution.
+                  Complete design and installation of multiple training kitchens, serving East Africa&apos;s leading hospitality training institution.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start">
@@ -175,7 +175,7 @@ export default function EducationalPage() {
           <div className="text-center">
             <h2 className="heading-2 mb-6">Ready to Create Your Training Facility?</h2>
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-              Let's discuss how we can help you build the perfect educational kitchen for your institution.
+              Let&apos;s discuss how we can help you build the perfect educational kitchen for your institution.
             </p>
             <Link
               href="/consultation"
