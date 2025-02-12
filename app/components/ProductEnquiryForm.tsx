@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
-import { BRAND } from "@/constants/brand";
 
 interface ProductEnquiryFormProps {
   productName: string;
@@ -17,10 +16,7 @@ export default function ProductEnquiryForm({ productName, category }: ProductEnq
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Here you would typically send the form data to your backend
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulated API call
-
+    await new Promise(resolve => setTimeout(resolve, 1000));
     setIsSubmitting(false);
     setIsSuccess(true);
   };
@@ -35,7 +31,7 @@ export default function ProductEnquiryForm({ productName, category }: ProductEnq
       
       {isSuccess ? (
         <div className="text-green-600">
-          <p>Thank you for your enquiry. {BRAND.name} team will contact you shortly.</p>
+          <p>Thank you for your enquiry. Our team will contact you shortly.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -65,32 +61,6 @@ export default function ProductEnquiryForm({ productName, category }: ProductEnq
               name="email"
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-              Phone
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={4}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-              defaultValue={`I'm interested in the ${productName} from your ${category} category.`}
             />
           </div>
 

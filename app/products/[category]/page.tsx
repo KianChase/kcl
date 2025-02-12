@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { MotionDiv } from "@/components/motion/MotionDiv";
 import { Ruler, Clock, Package } from "lucide-react";
 import { BRAND } from "@/constants/brand";
 import type { Category } from "@/types/product";
@@ -576,7 +576,7 @@ export default async function CategoryPage({ params }: PageProps) {
           <div className="lg:col-span-2">
             <div className="grid md:grid-cols-2 gap-8">
               {categoryData.products.map((product) => (
-                <motion.div
+                <MotionDiv
                   key={product.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -655,7 +655,7 @@ export default async function CategoryPage({ params }: PageProps) {
                       )}
                     </div>
                   </div>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
           </div>
