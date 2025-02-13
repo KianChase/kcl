@@ -9,28 +9,28 @@ const services = [
     icon: PenTool,
     title: "Custom Fabrication",
     description: "Bespoke stainless steel solutions tailored to your needs",
-    image: "https://images.unsplash.com/photo-1567159644489-31c8e01c57de?q=80&w=2000",
+    image: "/images/services/custom.jpeg",
     features: ["Custom dimensions", "Premium materials", "Quality craftsmanship"]
   },
   {
     icon: Settings,
     title: "Kitchen Planning",
     description: "Expert kitchen layout and workflow optimization",
-    image: "https://images.unsplash.com/photo-1588544644883-8aa1ff8c0e48?q=80&w=2000",
+    image: "/images/services/kitchen.jpeg",
     features: ["Space optimization", "3D visualization", "Equipment selection"]
   },
   {
     icon: Wrench,
     title: "Installation",
     description: "Professional setup with minimal disruption",
-    image: "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?q=80&w=2000",
+    image: "/images/services/installation.jpeg",
     features: ["Expert team", "Safety compliance", "Quality assurance"]
   },
   {
     icon: Users,
     title: "Maintenance",
     description: "24/7 support and preventive maintenance",
-    image: "https://images.unsplash.com/photo-1581578017093-cd30fce4eeb7?q=80&w=2000",
+    image: "/images/services/maintenance.jpeg",
     features: ["24/7 support", "Rapid response", "Genuine parts"]
   }
 ];

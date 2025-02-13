@@ -54,7 +54,7 @@ const galleries = [
 
 export default function GalleryPage() {
   return (
-    <div className="pt-24">
+    <div className="pt-20">
       <div className="bg-gray-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h1 className="heading-1 mb-4">Installation Gallery</h1>

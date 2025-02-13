@@ -43,7 +43,7 @@ export default function ConsultationForm() {
                 <Phone className="h-6 w-6 text-gray-400 mt-1" />
                 <div>
                   <h3 className="font-semibold mb-1">Call Us</h3>
-                  <p className="text-gray-600">+254 700 000000</p>
+                  <p className="text-gray-600">+254722291100</p>
                   <p className="text-gray-600">+254 733 000000</p>
                 </div>
               </div>

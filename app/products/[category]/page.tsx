@@ -539,7 +539,7 @@ export default async function CategoryPage({ params }: PageProps) {
   const categoryData = categoryContent[category];
 
   return (
-    <div className="pt-24">
+    <div className="pt-20">
       <div className="bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="py-4">
@@ -680,8 +680,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { category } = await params;
-  const categoryData = categoryContent[category as keyof typeof categoryContent];
+  const { category } = params;
+  const categoryData = categoryContent[category];
   
   if (!categoryData) {
     return {

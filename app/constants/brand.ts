@@ -26,7 +26,7 @@ export const BRAND = {
     }
   },
   contact: {
-    phone: "+254 700 000000",
+    phone: "+254722291100",
     email: "info@kcl.co.ke",
     support: "support@kcl.co.ke",
     technical: "technical@kcl.co.ke",
@@ -38,7 +38,7 @@ export const BRAND = {
     facebook: "#",
     instagram: "#",
     twitter: "#",
-    whatsapp: "https://wa.me/254700000000"
+    whatsapp: "https://wa.me/254722291100"
   },
   hours: {
     regular: {

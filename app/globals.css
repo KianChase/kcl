@@ -56,21 +56,3 @@
 .animate-fade-in {
   animation: fade-in 0.7s ease-out forwards;
 }
-
-/* Add these to your existing styles */
-.banner-spacing {
-  top: 40px; /* Height of the banner */
-}
-
-body.banner-closed .banner-spacing {
-  top: 0;
-}
-
-/* Add smooth transition for main content */
-main {
-  transition: padding-top 0.3s ease;
-}
-
-body.banner-closed main {
-  padding-top: 0 !important;
-}

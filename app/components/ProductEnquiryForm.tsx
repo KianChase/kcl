@@ -1,8 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Send } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "@/components/ui/input";
+import { TextArea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email"),
+  phone: z.string().optional(),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 interface ProductEnquiryFormProps {
   productName: string;
@@ -10,15 +25,29 @@ interface ProductEnquiryFormProps {
 }
 
 export default function ProductEnquiryForm({ productName, category }: ProductEnquiryFormProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-    setIsSuccess(true);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema)
+  });
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      setStatus("submitting");
+      // TODO: Implement form submission
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setStatus("success");
+      reset();
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong");
+    }
   };
 
   return (
@@ -29,57 +58,79 @@ export default function ProductEnquiryForm({ productName, category }: ProductEnq
     >
       <h3 className="text-xl font-semibold mb-4">Request Quote</h3>
       
-      {isSuccess ? (
-        <div className="text-green-600">
-          <p>Thank you for your enquiry. Our team will contact you shortly.</p>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input type="hidden" name="product" value={productName} />
-          <input type="hidden" name="category" value={category} />
-          
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-red-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+      <AnimatePresence mode="wait">
+        {status === "success" ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="text-green-600 flex items-center gap-2"
           >
-            {isSubmitting ? (
-              "Sending..."
-            ) : (
-              <>
-                Send Enquiry
-                <Send className="h-4 w-4" />
-              </>
+            <CheckCircle className="h-5 w-5" />
+            <p>Thank you for your enquiry. Our team will contact you shortly.</p>
+          </motion.div>
+        ) : (
+          <motion.form
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-4"
+          >
+            <input type="hidden" value={productName} />
+            <input type="hidden" value={category} />
+            
+            <Input
+              label="Name"
+              required
+              error={errors.name?.message}
+              {...register("name")}
+            />
+
+            <Input
+              label="Email"
+              type="email"
+              required
+              error={errors.email?.message}
+              {...register("email")}
+            />
+
+            <Input
+              label="Phone"
+              type="tel"
+              helperText="Optional"
+              error={errors.phone?.message}
+              {...register("phone")}
+            />
+
+            <TextArea
+              label="Message"
+              required
+              rows={4}
+              error={errors.message?.message}
+              {...register("message")}
+            />
+
+            {status === "error" && (
+              <div className="flex items-center gap-2 text-red-500">
+                <AlertCircle className="h-5 w-5" />
+                <p className="text-sm">{errorMessage}</p>
+              </div>
             )}
-          </button>
-        </form>
-      )}
+
+            <Button
+              type="submit"
+              variant="primary"
+              size="md"
+              isLoading={status === "submitting"}
+              loadingText="Sending..."
+              icon={<Send className="h-4 w-4" />}
+            >
+              Send Enquiry
+            </Button>
+          </motion.form>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 } 

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Banner from "./components/Banner";
 import Navigation from "./components/layout/Navigation";
 import Footer from "./components/layout/Footer";
 import FloatingContact from "./components/FloatingContact";
@@ -52,9 +51,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased`}>
-        <Banner />
         <Navigation />
-        <main className="min-h-screen pt-[80px]">{children}</main>
+        <main className="min-h-screen">{children}</main>
         <Footer />
         <FloatingContact />
       </body>

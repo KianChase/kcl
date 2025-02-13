@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 
 export default function CategoryNotFound() {
   return (
-    <div className="pt-24">
+    <div className="pt-20">
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Category Not Found</h1>

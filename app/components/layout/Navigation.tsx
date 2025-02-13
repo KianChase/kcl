@@ -27,7 +27,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -35,14 +35,14 @@ export default function Navigation() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 banner-spacing ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
           ? "bg-white/95 backdrop-blur-sm shadow-md py-3" 
           : "bg-transparent py-5"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between h-12">
           <Logo 
             variant={isScrolled ? "monogram" : "full"} 
             className={`transition-all duration-300 ${isScrolled ? "scale-90" : "scale-100"}`} 
@@ -69,7 +69,7 @@ export default function Navigation() {
               href="/consultation"
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 isScrolled
-                  ? `bg-red-600 text-white hover:bg-red-700`
+                  ? "bg-red-600 text-white hover:bg-red-700"
                   : "bg-white/90 text-red-600 hover:bg-white"
               }`}
             >
@@ -80,7 +80,7 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden transition-colors"
+            className="md:hidden p-2 -mr-2"
           >
             {isMobileMenuOpen ? (
               <X className={isScrolled ? "text-red-600" : "text-white"} />
@@ -104,6 +104,7 @@ export default function Navigation() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
                     className={`block px-4 py-2 text-sm font-medium ${
                       pathname === item.href
                         ? "bg-red-600 text-white"
@@ -115,6 +116,7 @@ export default function Navigation() {
                 ))}
                 <Link
                   href="/consultation"
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className="block px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700"
                 >
                   Get Quote

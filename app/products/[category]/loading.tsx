@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function CategoryLoading() {
   return (
-    <div className="pt-24">
+    <div className="pt-20">
       {/* Hero section skeleton */}
       <div className="bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4">

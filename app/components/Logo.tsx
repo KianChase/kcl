@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { BRAND } from "@/constants/brand";
 
 interface LogoProps {
@@ -13,14 +14,24 @@ export default function Logo({ className = "", variant = "full" }: LogoProps) {
     <Link href="/" className={`block ${className}`}>
       {variant === "monogram" ? (
         // Simple monogram version
-        <div className="flex items-center justify-center w-10 h-10">
+        <motion.div 
+          className="flex items-center justify-center w-10 h-10"
+          initial={{ scale: 0.95 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.2 }}
+        >
           <span className="text-2xl font-bold text-red-600">
             {BRAND.shortName}
           </span>
-        </div>
+        </motion.div>
       ) : (
         // Full version with company name
-        <div className="flex items-center gap-3">
+        <motion.div 
+          className="flex items-center gap-3"
+          initial={{ opacity: 0.95 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+        >
           <div className="flex flex-col">
             <div className="text-2xl font-bold leading-none">
               <span className="text-red-600">{BRAND.shortName}</span>
@@ -29,7 +40,7 @@ export default function Logo({ className = "", variant = "full" }: LogoProps) {
               {BRAND.name}
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </Link>
   );

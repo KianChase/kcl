@@ -39,7 +39,7 @@ const features = [
 
 export default function EducationalPage() {
   return (
-    <div className="pt-24">
+    <div className="pt-20">
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center">
         <div className="absolute inset-0">
