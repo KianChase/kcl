@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { PenTool, Settings, Wrench, Users } from "lucide-react";
+import { PenTool, Settings, Wrench, Users, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const services = [
   {
@@ -10,87 +11,149 @@ const services = [
     title: "Custom Fabrication",
     description: "Bespoke stainless steel solutions tailored to your needs",
     image: "/images/services/custom.jpeg",
-    features: ["Custom dimensions", "Premium materials", "Quality craftsmanship"]
+    features: [
+      "Custom dimensions",
+      "Premium materials",
+      "Quality craftsmanship",
+      "Unique designs"
+    ]
   },
   {
     icon: Settings,
     title: "Kitchen Planning",
     description: "Expert kitchen layout and workflow optimization",
     image: "/images/services/kitchen.jpeg",
-    features: ["Space optimization", "3D visualization", "Equipment selection"]
+    features: [
+      "3D visualization",
+      "Workflow analysis",
+      "Space optimization",
+      "Equipment selection"
+    ]
   },
   {
     icon: Wrench,
-    title: "Installation",
-    description: "Professional setup with minimal disruption",
+    title: "Installation & Support",
+    description: "Professional installation and ongoing maintenance",
     image: "/images/services/installation.jpeg",
-    features: ["Expert team", "Safety compliance", "Quality assurance"]
-  },
-  {
-    icon: Users,
-    title: "Maintenance",
-    description: "24/7 support and preventive maintenance",
-    image: "/images/services/maintenance.jpeg",
-    features: ["24/7 support", "Rapid response", "Genuine parts"]
+    features: [
+      "Expert installation",
+      "24/7 support",
+      "Regular maintenance",
+      "Performance monitoring"
+    ]
   }
 ];
 
 export default function ServicesShowcase() {
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800">
-            Our Services
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            East Africa&apos;s trusted commercial kitchen partner
-          </p>
+    <section className="relative py-24 overflow-hidden bg-gray-900">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#080808_1px,transparent_1px),linear-gradient(to_bottom,#080808_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-block text-red-500 text-lg font-medium mb-4 tracking-wider"
+          >
+            OUR SERVICES
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-4xl md:text-5xl font-bold text-white mb-6"
+          >
+            Comprehensive Kitchen Solutions
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="text-gray-400 max-w-2xl mx-auto"
+          >
+            From design to installation, we provide end-to-end solutions for your commercial kitchen needs
+          </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
-            >
-              <div className="relative h-64">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <service.icon className="h-8 w-8 text-white mb-3 group-hover:scale-110 transition-transform drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]" />
-                  <h3 className="text-2xl font-bold text-white">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-200 mt-2">
-                    {service.description}
-                  </p>
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+                className="relative group"
+              >
+                <div className="relative h-[300px] mb-6 rounded-2xl overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="p-2 rounded-lg bg-red-500/10 backdrop-blur-sm border border-red-500/20">
+                        <Icon className="h-6 w-6 text-red-500" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white">
+                        {service.title}
+                      </h3>
+                    </div>
+                    <p className="text-gray-300 text-sm">
+                      {service.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="p-8">
                 <ul className="space-y-3">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center text-gray-700">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 mr-3" />
+                  {service.features.map((feature, i) => (
+                    <motion.li
+                      key={feature}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 + i * 0.1 }}
+                      className="flex items-center gap-2 text-gray-400"
+                    >
+                      <div className="h-1.5 w-1.5 rounded-full bg-red-500" />
                       {feature}
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="text-center mt-20"
+        >
+          <Button
+            size="lg"
+            variant="primary"
+            className="group bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 border-0"
+          >
+            Explore All Services
+            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

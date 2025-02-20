@@ -3,124 +3,109 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Logo from "@/components/Logo";
-import { motion, AnimatePresence } from "framer-motion";
-import { BRAND } from "@/constants/brand";
+import { cn } from "@/lib/utils";
 
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Products", href: "/products" },
-  { label: "Projects", href: "/projects" },
-  { label: "Services", href: "/services" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" }
-].map(item => ({
-  ...item,
-  ariaLabel: `Visit ${BRAND.name} ${item.label} page`
-}));
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/products", label: "Products" },
+  { href: "/projects", label: "Projects" },
+  { href: "/why-choose-us", label: "Why Choose Us" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function Navigation() {
+  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header 
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled 
-          ? "bg-white/95 backdrop-blur-sm shadow-md py-3" 
-          : "bg-transparent py-5"
-      }`}
+          ? "bg-white shadow-md py-2" 
+          : "bg-transparent py-4"
+      )}
     >
       <nav className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-12">
-          <Logo 
-            variant={isScrolled ? "monogram" : "full"} 
-            className={`transition-all duration-300 ${isScrolled ? "scale-90" : "scale-100"}`} 
-          />
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <Logo theme={isScrolled ? "light" : "dark"} />
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
+          <div className="hidden md:flex items-center gap-1">
+            {links.map((link) => (
               <Link
-                key={item.href}
-                href={item.href}
-                className={`text-sm font-medium transition-colors ${
-                  isScrolled
-                    ? pathname === item.href
-                      ? "text-red-600"
-                      : "text-gray-600 hover:text-red-600"
-                    : "text-white hover:text-gray-200"
-                }`}
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                  pathname === link.href
+                    ? "text-red-600"
+                    : isScrolled
+                    ? "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                    : "text-white hover:text-white/80 hover:bg-white/10"
+                )}
               >
-                {item.label}
+                {link.label}
               </Link>
             ))}
-            <Link
-              href="/consultation"
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                isScrolled
-                  ? "bg-red-600 text-white hover:bg-red-700"
-                  : "bg-white/90 text-red-600 hover:bg-white"
-              }`}
-            >
-              Get Quote
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 -mr-2"
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 md:hidden"
+            aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <X className={isScrolled ? "text-red-600" : "text-white"} />
+            {isOpen ? (
+              <X className={isScrolled ? "text-gray-900" : "text-white"} />
             ) : (
-              <Menu className={isScrolled ? "text-red-600" : "text-white"} />
+              <Menu className={isScrolled ? "text-gray-900" : "text-white"} />
             )}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Navigation */}
         <AnimatePresence>
-          {isMobileMenuOpen && (
+          {isOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden mt-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg overflow-hidden"
+              className="md:hidden overflow-hidden"
             >
-              <div className="py-2 space-y-1">
-                {navItems.map((item) => (
+              <div className="py-4 space-y-2">
+                {links.map((link) => (
                   <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`block px-4 py-2 text-sm font-medium ${
-                      pathname === item.href
-                        ? "bg-red-600 text-white"
-                        : "text-gray-600 hover:bg-red-50 hover:text-red-600"
-                    }`}
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "block px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                      pathname === link.href
+                        ? "text-red-600 bg-red-50"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                    )}
                   >
-                    {item.label}
+                    {link.label}
                   </Link>
                 ))}
-                <Link
-                  href="/consultation"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700"
-                >
-                  Get Quote
-                </Link>
               </div>
             </motion.div>
           )}

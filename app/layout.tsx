@@ -5,6 +5,8 @@ import Navigation from "./components/layout/Navigation";
 import Footer from "./components/layout/Footer";
 import FloatingContact from "./components/FloatingContact";
 import { BRAND } from "@/constants/brand";
+import { CursorEffect } from "@/components/ui/cursor-effect";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: 'https://kcl.co.ke'
+    canonical: 'https://www.kitchencommercial.co.ke'
   },
   authors: [{ name: BRAND.name }],
 };
@@ -51,6 +53,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased`}>
+        <ScrollProgress />
+        <CursorEffect />
         <Navigation />
         <main className="min-h-screen">{children}</main>
         <Footer />

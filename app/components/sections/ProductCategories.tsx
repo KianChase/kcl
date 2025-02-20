@@ -10,37 +10,37 @@ const categories = [
   {
     title: "Workstation",
     description: "Professional kitchen workstations designed for efficiency",
-    image: "https://images.unsplash.com/photo-1588544644883-8aa1ff8c0e48?q=80&w=2000",
+    image: "/images/products/work station.jpg",
     href: "/products/workstation"
   },
   {
     title: "Sink",
     description: "Commercial grade stainless steel sinks and wash stations",
-    image: "https://images.unsplash.com/photo-1584771145729-0bd9fda6529b?q=80&w=2000",
+    image: "/images/products/sink.jfif",
     href: "/products/sink"
   },
   {
     title: "Ovens",
     description: "High-performance commercial ovens and cooking equipment",
-    image: "https://images.unsplash.com/photo-1591261730799-ee4e6c2d16d7?q=80&w=2000",
+    image: "/images/products/oven.jfif",
     href: "/products/ovens"
   },
   {
     title: "Hood",
     description: "Industrial kitchen ventilation and exhaust systems",
-    image: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?q=80&w=2000",
+    image: "/images/products/hood.jfif",
     href: "/products/hood"
   },
   {
     title: "Custom Made",
     description: "Bespoke kitchen solutions tailored to your needs",
-    image: "https://images.unsplash.com/photo-1567159644489-31c8e01c57de?q=80&w=2000",
+    image: "/images/products/customized.jfif",
     href: "/products/custom"
   },
   {
     title: "Tables",
     description: "Durable stainless steel tables and work surfaces",
-    image: "https://images.unsplash.com/photo-1557687790-902ede7ab58c?q=80&w=2000",
+    image: "/images/products/table.jfif",
     href: "/products/tables"
   }
 ];

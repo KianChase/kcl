@@ -98,10 +98,10 @@ export default function ProductEnquiryForm({ productName, category }: ProductEnq
             <Input
               label="Phone"
               type="tel"
-              helperText="Optional"
               error={errors.phone?.message}
               {...register("phone")}
             />
+            <p className="text-sm text-gray-500 mt-1">Optional</p>
 
             <TextArea
               label="Message"

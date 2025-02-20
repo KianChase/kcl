@@ -19,10 +19,9 @@ export default function UtaliiCollegePage() {
         "Improved workflow efficiency by 50%"
       ]}
       gallery={[
-        "/images/projects/utalii/gallery-1.jpg",
-        "/images/projects/utalii/gallery-2.jpg",
-        "/images/projects/utalii/gallery-3.jpg",
-        "/images/projects/utalii/gallery-4.jpg"
+        "/images/projects/utalii/gallery-1.jfif",
+        "/images/projects/utalii/gallery-2.jpeg",
+        "/images/projects/utalii/main.jfif",
       ]}
     >
       <section>

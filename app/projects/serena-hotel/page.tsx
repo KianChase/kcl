@@ -5,9 +5,9 @@ export default function SerenaHotelPage() {
     <ProjectLayout
       title="Serena Hotel Commercial Kitchen"
       description="High-capacity commercial kitchen installation for luxury hotel chain"
-      image="/images/projects/serena.jpg"
+      image="/images/projects/serena/main.jpeg"
       category="Hospitality"
-      location="Kampala, Uganda"
+      location="Nairobi, Kenya"
       year="2023"
       challenge="Serena Hotel required a high-capacity commercial kitchen capable of serving multiple restaurants and banquet facilities simultaneously. The challenge was to create an efficient workflow that could handle diverse culinary requirements while maintaining the highest standards of food quality and safety."
       solution="We implemented a modular kitchen design with distinct zones for different cuisines and service types. The layout incorporates advanced equipment and technology to optimize food preparation and service flow, while ensuring seamless coordination between different sections."
@@ -19,10 +19,10 @@ export default function SerenaHotelPage() {
         "Streamlined inventory management"
       ]}
       gallery={[
-        "/images/projects/serena/gallery-1.jpg",
-        "/images/projects/serena/gallery-2.jpg",
-        "/images/projects/serena/gallery-3.jpg",
-        "/images/projects/serena/gallery-4.jpg"
+        "/images/projects/serena/gallery-1.jpeg",
+        "/images/projects/serena/gallery-2.jpeg",
+        "/images/projects/serena/gallery-3.jpeg",
+        // "/images/projects/serena/gallery-4.jpg"
       ]}
     >
       <section>

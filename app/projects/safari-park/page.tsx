@@ -1,11 +1,11 @@
 import { ProjectLayout } from "@/components/layouts/ProjectLayout";
 
-export default function SafariParkPage() {
+export default function QueensPizzaPage() {
   return (
     <ProjectLayout
       title="Safari Park Hotel Kitchen Upgrade"
       description="Modernization of existing kitchen facilities with state-of-the-art equipment"
-      image="/images/projects/safari.jpg"
+      image="/images/projects/queens/main.jpeg"
       category="Hospitality"
       location="Nairobi, Kenya"
       year="2022"
@@ -19,10 +19,10 @@ export default function SafariParkPage() {
         "Zero operational downtime during upgrade"
       ]}
       gallery={[
-        "/images/projects/safari/gallery-1.jpg",
-        "/images/projects/safari/gallery-2.jpg",
-        "/images/projects/safari/gallery-3.jpg",
-        "/images/projects/safari/gallery-4.jpg"
+        "/images/projects/queens/gallery-1.jpeg",
+        "/images/projects/queens/gallery-2.jpeg",
+        "/images/projects/queens/gallery-3.jpeg",
+        "/images/projects/queens/gallery-4.jpeg"
       ]}
     >
       <section>

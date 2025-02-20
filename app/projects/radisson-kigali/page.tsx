@@ -3,13 +3,13 @@ import { ProjectLayout } from "@/components/layouts/ProjectLayout";
 export default function RadissonKigaliPage() {
   return (
     <ProjectLayout
-      title="Radisson Blu Hotel Kitchen"
+      title="Sarova Hotel Kitchen"
       description="Complete kitchen installation for new luxury hotel property"
-      image="/images/projects/radisson.jpg"
+      image="/images/projects/sarova/main.jpeg"
       category="Hospitality"
       location="Kigali, Rwanda"
       year="2022"
-      challenge="The new Radisson Blu Hotel required a comprehensive kitchen solution that could serve multiple dining venues while meeting international brand standards. The installation needed to handle high-volume operations while maintaining luxury service levels."
+      challenge="The new Sarova Hotel required a comprehensive kitchen solution that could serve multiple dining venues while meeting international brand standards. The installation needed to handle high-volume operations while maintaining luxury service levels."
       solution="We designed and implemented a multi-zone kitchen system with specialized areas for different dining venues. The installation includes state-of-the-art equipment and smart systems for efficient operation and monitoring."
       results={[
         "Completed installation ahead of schedule",
@@ -19,10 +19,10 @@ export default function RadissonKigaliPage() {
         "Achieved perfect safety rating"
       ]}
       gallery={[
-        "/images/projects/radisson/gallery-1.jpg",
-        "/images/projects/radisson/gallery-2.jpg",
-        "/images/projects/radisson/gallery-3.jpg",
-        "/images/projects/radisson/gallery-4.jpg"
+        "/images/projects/sarova/gallery-1.jpeg",
+        "/images/projects/sarova/gallery-2.jpeg",
+        "/images/projects/sarova/gallery-3.jpeg",
+        "/images/projects/sarova/gallery-4.jpeg"
       ]}
     >
       <section>

@@ -2,154 +2,164 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import router from "next/router";
 
 const projects = [
   {
-    title: "Sarova Stanley",
-    category: "Hotel",
-    description: "Complete kitchen renovation with custom stainless steel installations",
-    image: "https://images.unsplash.com/photo-1567159644489-31c8e01c57de?q=80&w=2000",
-    stats: {
-      area: "450 m²",
-      duration: "45 days",
-      equipment: "35+ units"
-    }
-  },
-  {
     title: "Utalii College",
-    category: "Education",
-    description: "State-of-the-art training kitchen facility for culinary students",
-    image: "https://images.unsplash.com/photo-1588544644883-8aa1ff8c0e48?q=80&w=2000",
+    category: "Educational",
+    description: "State-of-the-art training kitchen facility",
+    image: "/images/projects/utalii/main.jfif",
+    location: "Nairobi, Kenya",
     stats: {
-      area: "600 m²",
-      duration: "60 days",
-      equipment: "50+ units"
+      capacity: "200+ Students",
+      area: "1,500 sqm",
+      stations: "20 Units"
     }
   },
   {
-    title: "Nairobi Hospital",
-    category: "Healthcare",
-    description: "Modern hospital kitchen with specialized equipment",
-    image: "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?q=80&w=2000",
+    title: "Serena Hotel",
+    category: "Hospitality",
+    description: "High-capacity commercial kitchen installation",
+    image: "/images/projects/serena/main.jpeg",
+    location: "Nairobi, Kenya",
     stats: {
-      area: "350 m²",
-      duration: "40 days",
-      equipment: "25+ units"
+      capacity: "1000+ Meals/day",
+      area: "800 sqm",
+      stations: "12 Units"
+    }
+  },
+  {
+    title: "Queens Pizza",
+    category: "Hospitality",
+    description: "Complete kitchen renovation and upgrade",
+    image: "/images/projects/queens/main.jpeg",
+    location: "Nairobi, Kenya",
+    stats: {
+      capacity: "800+ Meals/day",
+      area: "600 sqm",
+      stations: "8 Units"
     }
   }
 ];
 
 export default function ProjectShowcase() {
-  const [selectedProject, setSelectedProject] = useState(0);
-
-  const currentProject = projects[selectedProject];
-
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600">
-            Featured Projects
-          </h2>
-          <p className="text-lg text-gray-600">
-            Excellence delivered across East Africa
-          </p>
+    <section className="relative py-24 overflow-hidden">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-block text-red-500 text-lg font-medium mb-4 tracking-wider"
+          >
+            FEATURED PROJECTS
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+          >
+            Our Latest Work
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="text-gray-600 max-w-2xl mx-auto"
+          >
+            Explore our portfolio of successful commercial kitchen installations across East Africa
+          </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Project Image */}
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedProject}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="absolute inset-0"
-              >
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+            >
+              <div className="relative h-[300px]">
                 <Image
-                  src={currentProject.image}
-                  alt={currentProject.title}
+                  src={project.image}
+                  alt={project.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <div className="text-sm font-medium text-emerald-400 mb-2">
-                    {currentProject.category}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="flex items-center gap-2 text-white/80 text-sm mb-2">
+                    <MapPin className="h-4 w-4" />
+                    {project.location}
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">
-                    {currentProject.title}
+                  <h3 className="text-xl font-semibold text-white mb-1">
+                    {project.title}
                   </h3>
-                  <p className="text-gray-200">
-                    {currentProject.description}
-                  </p>
+                  <span className="inline-block px-2 py-1 text-xs font-medium text-white bg-red-500 rounded-full">
+                    {project.category}
+                  </span>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </div>
 
-          {/* Project Details */}
-          <div>
-            <div className="grid grid-cols-3 gap-6 mb-12">
-              <div className="text-center p-4 bg-gray-50 rounded-xl">
-                <div className="text-2xl font-bold text-gray-900 mb-1">
-                  {currentProject.stats.area}
-                </div>
-                <div className="text-sm text-gray-600">Area</div>
-              </div>
-              <div className="text-center p-4 bg-gray-50 rounded-xl">
-                <div className="text-2xl font-bold text-gray-900 mb-1">
-                  {currentProject.stats.duration}
-                </div>
-                <div className="text-sm text-gray-600">Duration</div>
-              </div>
-              <div className="text-center p-4 bg-gray-50 rounded-xl">
-                <div className="text-2xl font-bold text-gray-900 mb-1">
-                  {currentProject.stats.equipment}
-                </div>
-                <div className="text-sm text-gray-600">Equipment</div>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              {projects.map((project, index) => (
-                <button
-                  key={project.title}
-                  onClick={() => setSelectedProject(index)}
-                  className={`w-full flex items-center justify-between p-4 rounded-xl transition-colors ${
-                    index === selectedProject
-                      ? "bg-gray-900 text-white"
-                      : "hover:bg-gray-50"
-                  }`}
-                >
-                  <div>
-                    <div className={index === selectedProject ? "text-emerald-400" : "text-gray-600"}>
-                      {project.category}
+              <div className="p-6">
+                <p className="text-gray-600 mb-4">
+                  {project.description}
+                </p>
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                  {Object.entries(project.stats).map(([key, value]) => (
+                    <div key={key}>
+                      <div className="text-sm font-medium text-gray-900">
+                        {value}
+                      </div>
+                      <div className="text-xs text-gray-500 capitalize">
+                        {key}
+                      </div>
                     </div>
-                    <div className="font-medium">{project.title}</div>
-                  </div>
-                  <ArrowRight className={`h-5 w-5 transition-transform ${
-                    index === selectedProject ? "rotate-90" : ""
-                  }`} />
-                </button>
-              ))}
-            </div>
-
-            <div className="mt-8">
-              <a
-                href="/projects"
-                className="inline-flex items-center gap-2 text-gray-900 font-semibold hover:text-gray-600 transition-colors"
-              >
-                View All Projects
-                <ArrowRight className="h-5 w-5" />
-              </a>
-            </div>
-          </div>
+                  ))}
+                </div>
+                <Button
+                  variant="ghost"
+                  className="w-full group border border-gray-200 hover:bg-gray-50 hover:border-gray-300"
+                  onClick={() => router.push("/projects")}
+                >
+                  View Details
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="text-center"
+        >
+          <Button
+            size="lg"
+            variant="primary"
+            className="group bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 border-0"
+            onClick={() => router.push("/projects")}
+          >
+            View All Projects
+            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

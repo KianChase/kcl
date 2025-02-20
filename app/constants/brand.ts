@@ -2,6 +2,8 @@ export const BRAND = {
   name: "Kitchen Commercial Limited",
   shortName: "KCL",
   tagline: "East Africa's premier manufacturer of commercial kitchen solutions",
+  website: "www.kitchencommercial.co.ke",
+  domain: "kitchencommercial.co.ke",
   theme: {
     colors: {
       primary: {
@@ -26,13 +28,15 @@ export const BRAND = {
     }
   },
   contact: {
-    phone: "+254722291100",
-    email: "info@kcl.co.ke",
-    support: "support@kcl.co.ke",
-    technical: "technical@kcl.co.ke",
-    installations: "installations@kcl.co.ke",
-    maintenance: "maintenance@kcl.co.ke",
-    address: "Industrial Area, Nairobi, Kenya"
+    phone: "+254 722 291 100",
+    email: "sales@kitchencommercial.co.ke",
+    support: "support@kitchencommercial.co.ke",
+    technical: "technical@kitchencommercial.co.ke",
+    installations: "installations@kitchencommercial.co.ke",
+    maintenance: "maintenance@kitchencommercial.co.ke",
+    address: "Orion Drive, Off Outering Road, Nairobi, Kenya",
+    city: "Nairobi",
+    country: "Kenya"
   },
   social: {
     facebook: "#",

@@ -1,20 +1,20 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { format } from "date-fns";
-import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { StatusBadge } from "@/components/admin/StatusBadge";
 
-type Params = Promise<{ id: string }>;
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
 
-export default async function SubmissionDetailPage({
-  params
-}: {
-  params: Params
-}) {
-  const { id } = await params;
+export default async function SubmissionDetailPage({ params }: PageProps) {
   const submission = await prisma.contactSubmission.findUnique({
-    where: { id }
+    where: { id: params.id }
   });
 
   if (!submission) {
@@ -23,60 +23,71 @@ export default async function SubmissionDetailPage({
 
   return (
     <div>
-      <div className="mb-6">
-        <Button
-          variant="ghost"
-          size="sm"
-          icon={<ArrowLeft className="h-4 w-4" />}
-          iconPosition="left"
-          asChild
-        >
+      <div className="mb-6 flex items-center justify-between">
+        <div className="flex items-center gap-4">
           <Link href="/admin/submissions">
-            Back to Submissions
+            <Button variant="ghost" size="sm" className="gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              Back to Submissions
+            </Button>
           </Link>
-        </Button>
+          <h1 className="text-2xl font-bold">Submission Details</h1>
+        </div>
+        <StatusBadge status={submission.status} />
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex justify-between items-start mb-6">
-          <h2 className="text-2xl font-bold">{submission.subject}</h2>
-          <span className={`px-2 py-1 text-sm font-semibold rounded-full ${
-            submission.status === "pending"
-              ? "bg-yellow-100 text-yellow-800"
-              : submission.status === "replied"
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
-          }`}>
-            {submission.status}
-          </span>
+      <div className="bg-white rounded-lg shadow-sm">
+        <div className="px-6 py-4 border-b">
+          <h2 className="text-lg font-medium">Contact Information</h2>
         </div>
 
-        <dl className="grid grid-cols-2 gap-x-4 gap-y-6">
+        <dl className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
           <div>
             <dt className="text-sm font-medium text-gray-500">Name</dt>
             <dd className="mt-1 text-sm text-gray-900">{submission.name}</dd>
           </div>
+          
           <div>
             <dt className="text-sm font-medium text-gray-500">Email</dt>
-            <dd className="mt-1 text-sm text-gray-900">{submission.email}</dd>
+            <dd className="mt-1 text-sm text-gray-900">
+              <a 
+                href={`mailto:${submission.email}`}
+                className="text-red-600 hover:text-red-900"
+              >
+                {submission.email}
+              </a>
+            </dd>
           </div>
-          <div className="col-span-2">
-            <dt className="text-sm font-medium text-gray-500">Message</dt>
-            <dd className="mt-1 text-sm text-gray-900 whitespace-pre-wrap">{submission.message}</dd>
-          </div>
+
           <div>
-            <dt className="text-sm font-medium text-gray-500">IP Address</dt>
-            <dd className="mt-1 text-sm text-gray-900">{submission.ipAddress}</dd>
+            <dt className="text-sm font-medium text-gray-500">Subject</dt>
+            <dd className="mt-1 text-sm text-gray-900">{submission.subject}</dd>
           </div>
+
           <div>
-            <dt className="text-sm font-medium text-gray-500">Date</dt>
+            <dt className="text-sm font-medium text-gray-500">Submitted</dt>
             <dd className="mt-1 text-sm text-gray-900">
               {format(submission.createdAt, "PPpp")}
             </dd>
           </div>
+
           <div className="col-span-2">
+            <dt className="text-sm font-medium text-gray-500">Message</dt>
+            <dd className="mt-1 text-sm text-gray-900 whitespace-pre-wrap">
+              {submission.message}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm font-medium text-gray-500">IP Address</dt>
+            <dd className="mt-1 text-sm text-gray-900">{submission.ipAddress}</dd>
+          </div>
+
+          <div>
             <dt className="text-sm font-medium text-gray-500">User Agent</dt>
-            <dd className="mt-1 text-sm text-gray-900">{submission.userAgent}</dd>
+            <dd className="mt-1 text-sm text-gray-900 truncate" title={submission.userAgent}>
+              {submission.userAgent}
+            </dd>
           </div>
         </dl>
       </div>

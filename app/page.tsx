@@ -4,6 +4,8 @@ import ProjectShowcase from "./components/sections/ProjectShowcase";
 import Statistics from "./components/sections/Statistics";
 import CTASection from "./components/sections/CTASection";
 import TestimonialCarousel from "./components/sections/TestimonialCarousel";
+import ClientLogos from "./components/sections/ClientLogos";
+import TestimonialShowcase from "./components/sections/TestimonialShowcase";
 
 export default function Home() {
   return (
@@ -14,6 +16,9 @@ export default function Home() {
       {/* Key Services */}
       <ServicesShowcase />
 
+      {/* Client Logos */}
+      <ClientLogos />
+
       {/* Impact Numbers */}
       <Statistics />
 
@@ -21,7 +26,7 @@ export default function Home() {
       <ProjectShowcase />
 
       {/* Client Stories */}
-      <TestimonialCarousel />
+      <TestimonialShowcase />
 
       {/* Call to Action */}
       <CTASection />

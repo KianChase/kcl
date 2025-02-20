@@ -24,9 +24,9 @@ export default function CTASection() {
               Ready to Transform Your Kitchen?
             </h2>
             <p className="mt-4 text-lg text-gray-300">
-              Get a custom quote for your commercial kitchen project. Our team is ready to help you create the perfect solution.
+              Let's create a kitchen that exceeds your expectations.
             </p>
-            <div className="mt-8 flex justify-center gap-4">
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/consultation"
                 className="inline-flex items-center gap-2 bg-white px-6 py-3 text-base font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-lg transition-colors"
@@ -35,10 +35,10 @@ export default function CTASection() {
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <Link
-                href="/portfolio"
+                href="/projects"
                 className="inline-flex items-center gap-2 bg-white/10 px-6 py-3 text-base font-semibold text-white hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded-lg transition-colors"
               >
-                View Portfolio
+                View Projects
               </Link>
             </div>
           </motion.div>

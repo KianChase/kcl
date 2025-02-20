@@ -522,14 +522,14 @@ const categoryContent: Record<string, Category> = {
 };
 
 interface PageProps {
-  params: Promise<{
+  params: {
     category: string;
-  }>;
+  };
 }
 
 export default async function CategoryPage({ params }: PageProps) {
   // Get the category from params
-  const { category } = await params;
+  const { category } = params;
   
   // Check if category exists
   if (!categoryContent[category]) {
@@ -685,34 +685,13 @@ export async function generateMetadata({ params }: PageProps) {
   
   if (!categoryData) {
     return {
-      title: "Category Not Found",
+      title: 'Category Not Found | KCL',
+      description: 'The requested product category could not be found.'
     };
   }
 
   return {
-    title: `${categoryData.title} | ${BRAND.name}`,
-    description: categoryData.description,
-    openGraph: {
-      title: `${categoryData.title} - Commercial Kitchen Equipment | ${BRAND.name}`,
-      description: categoryData.description,
-      images: [{ url: categoryData.image }],
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${categoryData.title} | ${BRAND.name}`,
-      description: categoryData.description,
-      images: [categoryData.image],
-    },
-    keywords: [
-      `commercial ${category}`,
-      `industrial ${category}`,
-      `stainless steel ${category}`,
-      `kitchen ${category}`,
-      `${BRAND.name} ${category}`,
-      'commercial kitchen equipment',
-      'Kenya',
-      'East Africa'
-    ].join(', '),
+    title: `${categoryData.title} | KCL`,
+    description: categoryData.description
   };
 } 
