@@ -1,3 +1,5 @@
+"use client";
+
 import PageHeader from "@/components/PageHeader";
 import { ServiceCard } from "@/components/ServiceCard";
 import { BRAND } from "@/constants/brand";
