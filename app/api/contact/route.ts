@@ -8,7 +8,7 @@ import { BRAND } from "@/constants/brand";
 import { rateLimit } from "@/lib/rate-limit";
 import { prisma } from "@/lib/prisma";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || "re_a1cKdd69_KFEVXvatcfd6w5VCyL2ppfQZ");
 
 export async function POST(request: Request) {
   try {
