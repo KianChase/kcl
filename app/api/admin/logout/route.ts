@@ -4,7 +4,9 @@ import { cookies } from "next/headers";
 export async function POST() {
   try {
     // Remove the admin token cookie
-    cookies().delete("admin_token");
+    (await
+      // Remove the admin token cookie
+      cookies()).delete("admin_token");
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Logout error:", error);

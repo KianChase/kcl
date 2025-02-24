@@ -8,10 +8,10 @@ import { BRAND } from "@/constants/brand";
 
 const categories = [
   {
-    title: "Workstation",
-    description: "Professional kitchen workstations designed for efficiency",
+    title: "Cooker",
+    description: "Professional kitchen cookers designed for efficiency",
     image: "/images/products/work station.jpg",
-    href: "/products/workstation"
+    href: "/products/cooker"
   },
   {
     title: "Sink",
@@ -104,4 +104,6 @@ export default function ProductCategories() {
       </div>
     </section>
   );
-} 
+}
+
+

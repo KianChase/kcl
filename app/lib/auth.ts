@@ -3,9 +3,9 @@ import { verify } from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 
-export function isAuthenticated() {
+export async function isAuthenticated() {
   try {
-    const token = cookies().get("admin_token")?.value;
+    const token = (await cookies()).get("admin_token")?.value;
     if (!token) return false;
 
     verify(token, JWT_SECRET);

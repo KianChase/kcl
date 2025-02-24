@@ -10,7 +10,7 @@ const contactInfo = [
     title: "Phone",
     details: [
       BRAND.contact.phone,
-      BRAND.contact.mobile
+      BRAND.contact.phone
     ]
   },
   {
@@ -34,7 +34,8 @@ const contactInfo = [
     title: "Business Hours",
     details: [
       BRAND.hours.regular.weekdays,
-      BRAND.hours.regular.weekend
+      BRAND.hours.regular.saturday,
+      BRAND.hours.regular.sunday
     ]
   }
 ];

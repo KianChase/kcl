@@ -1,11 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, type HTMLMotionProps } from "framer-motion";
 
-interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: "default" | "circular" | "rounded";
+interface SkeletonProps extends HTMLMotionProps<"div"> {
   animation?: "pulse" | "wave" | "none";
+  className?: string;
 }
 
 const pulseVariants = {
@@ -34,24 +34,23 @@ const waveVariants = {
 
 export function Skeleton({
   className,
-  variant = "default",
   animation = "pulse",
   ...props
 }: SkeletonProps) {
   const baseClasses = cn(
     "bg-gray-200",
     {
-      "rounded-md": variant === "default",
-      "rounded-full": variant === "circular",
-      "rounded-lg": variant === "rounded",
+      "rounded-md": animation === "pulse",
+      "rounded-full": animation === "wave",
       "bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:200%_100%]":
         animation === "wave"
     },
     className
   );
-
   if (animation === "none") {
-    return <div className={baseClasses} {...props} />;
+    const { animate, variants, initial, ...otherProps } = props;
+    //@ts-ignore
+    return <div className={baseClasses} {...otherProps} />;
   }
 
   return (

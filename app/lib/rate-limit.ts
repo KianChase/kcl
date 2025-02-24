@@ -2,7 +2,7 @@ import { redis } from "./redis";
 import { headers } from "next/headers";
 
 export async function rateLimit(identifier: string = "default") {
-  const ip = headers().get("x-forwarded-for") || "anonymous";
+  const ip = (await headers()).get("x-forwarded-for") || "anonymous";
   const key = `rate-limit:${identifier}:${ip}`;
   
   const window = 60 * 60; // 1 hour window

@@ -1,24 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, LucideIcon } from "lucide-react";
 import * as Icons from "lucide-react";
 
 interface ServiceCardProps {
   title: string;
   description: string;
-  icon: keyof typeof Icons;
+  icon: LucideIcon;
   features: string[];
 }
 
 export function ServiceCard({
   title,
   description,
-  icon,
+  icon: Icon,
   features
 }: ServiceCardProps) {
-  const Icon = Icons[icon];
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

@@ -6,15 +6,15 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/admin/StatusBadge";
 
+
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export default async function SubmissionDetailPage({ params }: PageProps) {
+  const { id } = await params;
   const submission = await prisma.contactSubmission.findUnique({
-    where: { id: params.id }
+    where: { id }
   });
 
   if (!submission) {
@@ -85,7 +85,7 @@ export default async function SubmissionDetailPage({ params }: PageProps) {
 
           <div>
             <dt className="text-sm font-medium text-gray-500">User Agent</dt>
-            <dd className="mt-1 text-sm text-gray-900 truncate" title={submission.userAgent}>
+            <dd className="mt-1 text-sm text-gray-900 truncate" title={submission.userAgent ?? ""}>
               {submission.userAgent}
             </dd>
           </div>

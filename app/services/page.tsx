@@ -1,12 +1,13 @@
 import PageHeader from "@/components/PageHeader";
 import { ServiceCard } from "@/components/ServiceCard";
 import { BRAND } from "@/constants/brand";
+import { Wrench, PenTool, Users, Shield, Clock, Phone } from "lucide-react";
 
 const services = [
   {
     title: "Kitchen Design & Planning",
     description: "Expert kitchen layout and workflow optimization for maximum efficiency",
-    icon: "Pencil",
+    icon: PenTool,
     features: [
       "3D visualization and planning",
       "Workflow optimization",
@@ -17,7 +18,7 @@ const services = [
   {
     title: "Equipment Installation",
     description: "Professional installation of commercial kitchen equipment",
-    icon: "Wrench",
+    icon: Wrench,
     features: [
       "Equipment setup and testing",
       "Safety compliance checks",
@@ -28,7 +29,7 @@ const services = [
   {
     title: "Maintenance & Support",
     description: "Comprehensive maintenance and support services",
-    icon: "Settings",
+    icon: Shield,
     features: [
       "24/7 emergency support",
       "Preventive maintenance",
@@ -39,7 +40,7 @@ const services = [
   {
     title: "Training Solutions",
     description: "Professional training for kitchen staff and operators",
-    icon: "GraduationCap",
+    icon: Users,
     features: [
       "Equipment operation training",
       "Safety procedures",
@@ -50,7 +51,7 @@ const services = [
   {
     title: "Consultation Services",
     description: "Expert consultation for kitchen projects",
-    icon: "ClipboardList",
+    icon: Clock,
     features: [
       "Project planning",
       "Budget optimization",
@@ -61,7 +62,7 @@ const services = [
   {
     title: "Custom Solutions",
     description: "Tailored solutions for unique requirements",
-    icon: "Settings2",
+    icon: Phone,
     features: [
       "Custom equipment design",
       "Special installations",

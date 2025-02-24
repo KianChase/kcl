@@ -1,80 +1,76 @@
 "use client";
 
-import { forwardRef } from "react";
+import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
-import { motion } from "framer-motion";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost";
-  size?: "sm" | "md" | "lg";
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        outline: "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+        primary: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500",
+      },
+      size: {
+        default: "h-9 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-8",
+        icon: "h-9 w-9",
+        md: "h-10 px-6 py-3 text-base",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
   isLoading?: boolean;
   loadingText?: string;
   icon?: React.ReactNode;
   iconPosition?: "left" | "right";
-  asChild?: boolean;
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ 
-    className, 
-    variant = "primary", 
-    size = "md",
-    isLoading = false,
-    loadingText,
-    icon,
-    iconPosition = "right",
-    asChild = false,
-    children,
-    disabled,
-    ...props 
-  }, ref) => {
-    const baseStyles = "font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2";
-    
-    const variants = {
-      primary: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500",
-      secondary: "bg-gray-800 text-white hover:bg-gray-700 focus:ring-gray-500",
-      outline: "border-2 border-red-600 text-red-600 hover:bg-red-50 focus:ring-red-500",
-      ghost: "text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:ring-gray-500"
-    };
-
-    const sizes = {
-      sm: "px-4 py-2 text-sm",
-      md: "px-6 py-3 text-base",
-      lg: "px-8 py-4 text-lg"
-    };
-
-    const Comp = asChild ? Slot : motion.button;
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, isLoading, loadingText, children, icon, iconPosition, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
 
     return (
       <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
-        className={cn(baseStyles, variants[variant], sizes[size], className)}
-        disabled={disabled || isLoading}
-        {...(asChild ? {} : {
-          whileHover: { scale: disabled || isLoading ? 1 : 1.02 },
-          whileTap: { scale: disabled || isLoading ? 1 : 0.98 }
-        })}
+        disabled={isLoading || props.disabled}
         {...props}
       >
         {isLoading ? (
           <>
-            <Loader2 className="h-5 w-5 animate-spin" />
+            <Loader2 className="h-4 w-4 animate-spin" />
             {loadingText || children}
           </>
         ) : (
           <>
-            {icon && iconPosition === "left" && icon}
+            {iconPosition === "left" && icon}
             {children}
-            {icon && iconPosition === "right" && icon}
+            {iconPosition !== "left" && icon}
           </>
         )}
       </Comp>
     );
   }
 );
-
 Button.displayName = "Button";
 
-export { Button }; 
+export { Button, buttonVariants }; 

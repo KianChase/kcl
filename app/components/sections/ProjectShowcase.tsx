@@ -2,12 +2,29 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 
-const projects = [
+interface ProjectStats {
+  capacity: string;
+  area: string;
+  stations: string;
+}
+
+interface Project {
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+  location: string;
+  stats: ProjectStats;
+  href: string;
+}
+
+const projects: Project[] = [
   {
     title: "Utalii College",
     category: "Educational",
@@ -18,7 +35,8 @@ const projects = [
       capacity: "200+ Students",
       area: "1,500 sqm",
       stations: "20 Units"
-    }
+    },
+    href: "/portfolio/utalii-college"
   },
   {
     title: "Serena Hotel",
@@ -30,7 +48,8 @@ const projects = [
       capacity: "1000+ Meals/day",
       area: "800 sqm",
       stations: "12 Units"
-    }
+    },
+    href: "/portfolio/serena-hotel"
   },
   {
     title: "Queens Pizza",
@@ -42,11 +61,22 @@ const projects = [
       capacity: "800+ Meals/day",
       area: "600 sqm",
       stations: "8 Units"
-    }
+    },
+    href: "/portfolio/queens-pizza"
   }
 ];
 
 export default function ProjectShowcase() {
+  const router = useRouter();
+
+  const handleViewProject = (href: string) => {
+    router.push(href);
+  };
+
+  const handleViewAllProjects = () => {
+    router.push("/portfolio");
+  };
+
   return (
     <section className="relative py-24 overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,7 +119,8 @@ export default function ProjectShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+              onClick={() => router.push(project.href)}
             >
               <div className="relative h-[300px]">
                 <Image
@@ -129,14 +160,10 @@ export default function ProjectShowcase() {
                     </div>
                   ))}
                 </div>
-                <Button
-                  variant="ghost"
-                  className="w-full group border border-gray-200 hover:bg-gray-50 hover:border-gray-300"
-                  onClick={() => router.push("/projects")}
-                >
-                  View Details
+                <div className="flex items-center justify-center text-red-600 group-hover:text-red-700">
+                  <span className="font-medium">View Details</span>
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -150,15 +177,16 @@ export default function ProjectShowcase() {
           transition={{ delay: 0.5 }}
           className="text-center"
         >
-          <Button
-            size="lg"
-            variant="primary"
-            className="group bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 border-0"
-            onClick={() => router.push("/projects")}
-          >
-            View All Projects
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Button>
+          <Link href="/portfolio">
+            <Button
+              size="lg"
+              variant="primary"
+              className="group bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 border-0"
+            >
+              View All Projects
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -59,7 +59,7 @@ export function LogoutButton() {
               Cancel
             </Button>
             <Button
-              variant="primary"
+              variant="destructive"
               onClick={handleLogout}
               isLoading={isLoading}
               loadingText="Logging out..."

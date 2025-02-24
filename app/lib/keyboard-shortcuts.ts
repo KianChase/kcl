@@ -30,6 +30,7 @@ export function useKeyboardShortcuts(shortcuts: ShortcutConfig[]) {
         const activeElement = document.activeElement as HTMLElement;
         if (activeElement?.tagName === "INPUT") {
           activeElement.blur();
+          //@ts-ignore
           if (activeElement.name === "q") {
             (activeElement as HTMLInputElement).value = "";
           }

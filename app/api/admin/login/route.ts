@@ -20,7 +20,9 @@ export async function POST(request: Request) {
     const token = sign({ role: "admin" }, JWT_SECRET, { expiresIn: "24h" });
 
     // Set cookie
-    cookies().set("admin_token", token, {
+    (await
+      // Set cookie
+      cookies()).set("admin_token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",

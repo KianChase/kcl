@@ -522,14 +522,12 @@ const categoryContent: Record<string, Category> = {
 };
 
 interface PageProps {
-  params: {
-    category: string;
-  };
+  params: Promise<{ category: string }>;
 }
 
 export default async function CategoryPage({ params }: PageProps) {
   // Get the category from params
-  const { category } = params;
+  const { category } = await params;
   
   // Check if category exists
   if (!categoryContent[category]) {
@@ -680,7 +678,7 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { category } = params;
+  const { category } = await params;
   const categoryData = categoryContent[category];
   
   if (!categoryData) {
@@ -691,7 +689,7 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return {
-    title: `${categoryData.title} | KCL`,
+    title: `${categoryData.title} | KCL`, 
     description: categoryData.description
   };
 } 

@@ -28,8 +28,8 @@ export async function POST(request: Request) {
     const submission = await prisma.contactSubmission.create({
       data: {
         ...validatedData,
-        ipAddress: headersList.get("x-forwarded-for") || "unknown",
-        userAgent: headersList.get("user-agent") || "unknown"
+        ipAddress: (await headersList).get("x-forwarded-for") || "unknown",
+        userAgent: (await headersList).get("user-agent") || "unknown"
       }
     });
 
