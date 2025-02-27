@@ -5,7 +5,7 @@ export default function UtaliiCollegePage() {
     <ProjectLayout
       title="Utalii College Training Kitchen"
       description="Complete kitchen setup for Kenya's premier hospitality training institution"
-      image="/images/projects/utalii/main.jfif"
+      image="/images/projects/utalii/gallery-2.jpeg"
       category="Educational"
       location="Nairobi, Kenya"
       year="2023"

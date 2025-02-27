@@ -36,7 +36,7 @@ const projects: Project[] = [
       area: "1,500 sqm",
       stations: "20 Units"
     },
-    href: "/portfolio/utalii-college"
+    href: "/projects/utalii-college"
   },
   {
     title: "Serena Hotel",
@@ -49,7 +49,7 @@ const projects: Project[] = [
       area: "800 sqm",
       stations: "12 Units"
     },
-    href: "/portfolio/serena-hotel"
+    href: "/projects/serena-hotel"
   },
   {
     title: "Queens Pizza",
@@ -62,7 +62,7 @@ const projects: Project[] = [
       area: "600 sqm",
       stations: "8 Units"
     },
-    href: "/portfolio/queens-pizza"
+    href: "/projects/queens-pizza"
   }
 ];
 
@@ -74,7 +74,7 @@ export default function ProjectShowcase() {
   };
 
   const handleViewAllProjects = () => {
-    router.push("/portfolio");
+    router.push("/projects");
   };
 
   return (
@@ -177,7 +177,7 @@ export default function ProjectShowcase() {
           transition={{ delay: 0.5 }}
           className="text-center"
         >
-          <Link href="/portfolio">
+          <Link href="/projects">
             <Button
               size="lg"
               variant="primary"
