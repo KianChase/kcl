@@ -29,7 +29,7 @@ const projects: Project[] = [
     title: "Utalii College",
     category: "Educational",
     description: "State-of-the-art training kitchen facility",
-    image: "/images/projects/utalii/main.jfif",
+    image: "/images/projects/utalii/gallery-2.jpeg",
     location: "Nairobi, Kenya",
     stats: {
       capacity: "200+ Students",
