@@ -82,20 +82,21 @@ export default function Navigation() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile menu */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden overflow-hidden"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute inset-x-0 top-full bg-white shadow-lg rounded-b-lg lg:hidden"
             >
-              <div className="py-4 space-y-2">
+              <div className="px-4 py-6">
                 {links.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
+                    onClick={() => setIsOpen(false)}
                     className={cn(
                       "block px-4 py-2 rounded-lg text-sm font-medium transition-colors",
                       pathname === link.href
